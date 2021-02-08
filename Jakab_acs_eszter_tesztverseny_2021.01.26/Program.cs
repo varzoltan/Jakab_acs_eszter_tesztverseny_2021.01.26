@@ -73,14 +73,59 @@ namespace Jakab_acs_eszter_tesztverseny_2021._01._26
             int szamlalo = 0;
             for (int i=0;i<n;i++)
             {
-                if (helyes_valaszok[sorszam] == adatok[i].valaszok[sorszam])
+                if (helyes_valaszok[sorszam-1] == adatok[i].valaszok[sorszam-1])
                 {
                     szamlalo++;
                 }
             }
             double szazalek =  (double)szamlalo  /  n  *  100;
-            Console.WriteLine($"A feladatra {szamlalo} fő, a versenyzők {szazalek.ToString("0.00")}%-a adott helyes választ.");
+            Console.WriteLine($"A feladatra {szamlalo} fő, a versenyzők {Math.Round(szazalek,2)}%-a adott helyes választ.");
+
+            //6.feladat
+            //Console.WriteLine(pontok(helyes_valaszok, adatok[0].valaszok));
+            //Fájba írás
+            StreamWriter ir = new StreamWriter(@"E:\OneDrive - Kisvárdai SZC Móricz Zsigmond Szakgimnáziuma és Szakközépiskolája\Oktatas\Programozas\Jakab_Acs_Eszter\Erettsegi_feladatok\2017-majus_tesztverseny\pontok.txt");
+            for (int i=0;i<n;i++)
+            {
+
+            }
+            ir.Close();
             Console.ReadKey();
+        }
+
+        //6.feladat: függvény készítése
+        static int pontok(string helyes_valasz, string versenyzo_valasz)
+        {
+            int pont = 0;
+            for (int i = 0;i<5;i++)
+            {
+                if (helyes_valasz[i] == versenyzo_valasz[i])
+                {
+                    pont += 3;
+                }
+            }
+
+            for (int i = 5; i < 10; i++)
+            {
+                if (helyes_valasz[i] == versenyzo_valasz[i])
+                {
+                    pont += 4;
+                }
+            }
+
+            for (int i = 10; i < 13; i++)
+            {
+                if (helyes_valasz[i] == versenyzo_valasz[i])
+                {
+                    pont += 5;
+                }
+            }
+
+            if (helyes_valasz[13] == versenyzo_valasz[13])
+            {
+                pont += 6;
+            }
+            return pont;
         }
     }
 }
