@@ -85,11 +85,37 @@ namespace Jakab_acs_eszter_tesztverseny_2021._01._26
             //Console.WriteLine(pontok(helyes_valaszok, adatok[0].valaszok));
             //Fájba írás
             StreamWriter ir = new StreamWriter(@"E:\OneDrive - Kisvárdai SZC Móricz Zsigmond Szakgimnáziuma és Szakközépiskolája\Oktatas\Programozas\Jakab_Acs_Eszter\Erettsegi_feladatok\2017-majus_tesztverseny\pontok.txt");
+            int max = pontok(adatok[0].valaszok, helyes_valaszok);
             for (int i=0;i<n;i++)
             {
-
+                ir.WriteLine(adatok[i].kod + " " + pontok(helyes_valaszok, adatok[i].valaszok));
+                if (max < pontok(adatok[i].valaszok, helyes_valaszok))
+                {
+                    max = pontok(adatok[i].valaszok, helyes_valaszok);
+                }
             }
             ir.Close();
+
+            //7.feladat
+            for (int j = 1;j<4;j++)
+            {
+                bool volt = false;
+                for (int i = 0; i < n; i++)
+                {
+
+                    if (max == pontok(adatok[i].valaszok, helyes_valaszok))
+                    {
+                        Console.WriteLine($"{j}. díj ({max} pont): {adatok[i].kod}");
+                        volt = true;
+                    }
+                }
+                max--;
+                if (!volt)
+                {
+                    j--;
+                }
+            }
+            
             Console.ReadKey();
         }
 
